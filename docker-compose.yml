@@ -1,0 +1,19 @@
+app:
+  build: .
+  environment:
+    - DB_USER=postgres
+    - DB_PASS=
+    - DB_HOST=db
+    - MIX_ENV=dev
+  volumes:
+    - .:/code
+    - .hex:/root/.hex
+    - .mix:/root/.mix
+  ports:
+    - 3001:4000
+  links:
+    - db
+db:
+  image: postgres
+  volumes:
+    - .postgres_data:/var/lib/postgresql/data
